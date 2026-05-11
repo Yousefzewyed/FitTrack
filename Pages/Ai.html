@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack Pro - AI Workout Planner</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/Global.css">
+    <link rel="stylesheet" href="../css/Components.css">
+    <link rel="stylesheet" href="../css/Ai.css">
+    
+</head>
+<body>
+
+    <!-- ===== NAVIGATION SECTION ===== -->
+    <nav>
+      <a class="logo" href="index.html">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" transform="rotate(-45)">
+            <path
+              d="M7.4 7H4.6C4.27 7 4 7.27 4 7.6V16.4C4 16.73 4.27 17 4.6 17H7.4C7.73 17 8 16.73 8 16.4V7.6C8 7.27 7.73 7 7.4 7Z"
+              stroke="black"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M19.4 7H16.6C16.27 7 16 7.27 16 7.6V16.4C16 16.73 16.27 17 16.6 17H19.4C19.73 17 20 16.73 20 16.4V7.6C20 7.27 19.73 7 19.4 7Z"
+              stroke="black"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M8 12H16"
+              stroke="black"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+        FitTrack Pro
+      </a>
+
+      <div class="nav-links">
+        <a class="nav-link" href="Dashboard.html">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+          </svg>
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-link active" href="Ai.html">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="3" />
+            <path
+              d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"
+            />
+          </svg>
+          <span>AI Workout</span>
+        </a>
+        <a class="nav-link " href="exercise.html">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path
+              d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+            />
+          </svg>
+          <span>Exercises</span>
+        </a>
+      </div>
+
+    </nav>
+    <!-- ===== END NAVIGATION SECTION ===== -->
+
+    <!-- ===== MAIN CONTENT SECTION ===== -->
+
+    <main class="maain">
+        <div class="page-header">
+            <h1>AI Workout Planner</h1>
+            <p>Answer a few questions to get your personalized workout plan</p>
+        </div>
+
+        <form id="ai-workout-form">
+            
+            <div class="question-group">
+                <div class="question-title">
+                    <span class="q-number">1</span>
+                    How many days per week do you want to train?
+                </div>
+                <div class="options-grid grid-4">
+                    <label class="option-card"><input type="radio" name="days" value="3" required>
+                        <div class="card-content"><span class="icon">📅</span><span class="title">3</span><span class="subtitle">days/week</span></div>
+                    </label>
+                    <label class="option-card"><input type="radio" name="days" value="4">
+                        <div class="card-content"><span class="icon">📅</span><span class="title">4</span><span class="subtitle">days/week</span></div>
+                    </label>
+                    <label class="option-card"><input type="radio" name="days" value="5">
+                        <div class="card-content"><span class="icon">📅</span><span class="title">5</span><span class="subtitle">days/week</span></div>
+                    </label>
+                    <label class="option-card"><input type="radio" name="days" value="6">
+                        <div class="card-content"><span class="icon">📅</span><span class="title">6</span><span class="subtitle">days/week</span></div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <div class="question-title">
+                    <span class="q-number">2</span>
+                    What is your main fitness goal?
+                </div>
+                <div class="options-grid grid-3">
+                    <label class="option-card"><input type="radio" name="goal" value="Lose Weight" required>
+                        <div class="card-content"><span class="icon">🔥</span><span class="title">Lose Weight</span></div>
+                    </label>
+                    <label class="option-card"><input type="radio" name="goal" value="Build Muscle">
+                        <div class="card-content"><span class="icon">💪</span><span class="title">Build Muscle</span></div>
+                    </label>
+                    <label class="option-card"><input type="radio" name="goal" value="Get Stronger">
+                        <div class="card-content"><span class="icon">⚡</span><span class="title">Get Stronger</span></div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <div class="question-title">
+                    <span class="q-number">3</span>
+                    What is your experience level in the gym?
+                </div>
+                <div class="options-grid grid-3">
+                    <label class="option-card"><input type="radio" name="level" value="Beginner" required>
+                        <div class="card-content"><span class="title">Beginner</span><span class="subtitle">0-1 year</span></div>
+                    </label>
+                    <label class="option-card"><input type="radio" name="level" value="Intermediate">
+                        <div class="card-content"><span class="title">Intermediate</span><span class="subtitle">1-3 years</span></div>
+                    </label>
+                    <label class="option-card"><input type="radio" name="level" value="Advanced">
+                        <div class="card-content"><span class="title">Advanced</span><span class="subtitle">3+ years</span></div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <div class="question-title">
+                    <span class="q-number">4</span>
+                    What type of equipment do you prefer? (Select all that apply)
+                </div>
+                <div class="options-grid grid-3">
+                    <label class="option-card"><input type="checkbox" name="equipment" value="Free Weights">
+                        <div class="card-content"><span class="icon">🏋️</span><span class="title">Free Weights</span><span class="subtitle">Barbells, Dumbbells</span></div>
+                    </label>
+                    <label class="option-card"><input type="checkbox" name="equipment" value="Machines">
+                        <div class="card-content"><span class="icon">⚙️</span><span class="title">Machines</span><span class="subtitle">Smith Machine, Leg Press</span></div>
+                    </label>
+                    <label class="option-card"><input type="checkbox" name="equipment" value="Cables">
+                        <div class="card-content"><span class="icon">🔗</span><span class="title">Cables</span><span class="subtitle">Cable Crossover, Pulleys</span></div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="submit-btn-container">
+                <button type="submit" class="submit-btn">✨ Generate My Workout Plan ></button>
+            </div>
+
+        </form>
+        
+        <div id="result-container" style="margin-top: 30px; display: none;">
+            <h2 style="color: var(--primary-yellow); margin-bottom: 15px;">Your Workout Plan:</h2>
+            <div id="loading" style="display: none;">Generating plan... Please wait ⏳</div>
+            <div id="api-response" style="background: #222; padding: 20px; border-radius: 8px; border: 1px solid #333; overflow-x: auto;"></div>
+        </div>
+
+    </main>
+
+    <!-- ===== END MAIN CONTENT SECTION ===== -->
+
+    
+    <!-- ===== JAVASCRIPT SECTION ===== -->
+<script>
+    function generateSampleWorkout(numDays, userGoal, userLevel) {
+        const workoutDays = [];
+        const dayNames = {
+            3: ['Day 1 - Push', 'Day 2 - Pull', 'Day 3 - Legs'],
+            4: ['Day 1 - Upper Push', 'Day 2 - Lower Body', 'Day 3 - Upper Pull', 'Day 4 - Full Body'],
+            5: ['Day 1 - Chest', 'Day 2 - Back', 'Day 3 - Legs', 'Day 4 - Shoulders', 'Day 5 - Arms'],
+            6: ['Day 1 - Chest', 'Day 2 - Back', 'Day 3 - Legs', 'Day 4 - Shoulders', 'Day 5 - Arms', 'Day 6 - Full Body']
+        };
+
+        const exercises = {
+            'Lose Weight': [
+                { name: 'Burpees', equipment: 'Bodyweight', muscle_group: 'Full Body', sets: 3, reps: '10-15', rest: '30s' },
+                { name: 'Mountain Climbers', equipment: 'Bodyweight', muscle_group: 'Core', sets: 3, reps: '20-30', rest: '30s' },
+                { name: 'Jump Squats', equipment: 'Bodyweight', muscle_group: 'Legs', sets: 4, reps: '12-15', rest: '45s' },
+                { name: 'Push-ups', equipment: 'Bodyweight', muscle_group: 'Chest', sets: 3, reps: '10-15', rest: '60s' },
+                { name: 'Plank', equipment: 'Bodyweight', muscle_group: 'Core', sets: 3, reps: '30-60s', rest: '30s' }
+            ],
+            'Build Muscle': [
+                { name: 'Bench Press', equipment: 'Barbell', muscle_group: 'Chest', sets: 4, reps: '8-12', rest: '90s' },
+                { name: 'Bent Over Rows', equipment: 'Barbell', muscle_group: 'Back', sets: 4, reps: '8-12', rest: '90s' },
+                { name: 'Squats', equipment: 'Barbell', muscle_group: 'Quads', sets: 4, reps: '8-10', rest: '120s' },
+                { name: 'Shoulder Press', equipment: 'Dumbbells', muscle_group: 'Shoulders', sets: 3, reps: '10-12', rest: '60s' },
+                { name: 'Bicep Curls', equipment: 'Dumbbells', muscle_group: 'Biceps', sets: 3, reps: '12-15', rest: '60s' }
+            ],
+            'Get Stronger': [
+                { name: 'Deadlift', equipment: 'Barbell', muscle_group: 'Full Body', sets: 5, reps: '3-5', rest: '180s' },
+                { name: 'Bench Press', equipment: 'Barbell', muscle_group: 'Chest', sets: 5, reps: '3-5', rest: '180s' },
+                { name: 'Squats', equipment: 'Barbell', muscle_group: 'Quads', sets: 5, reps: '3-5', rest: '180s' },
+                { name: 'Overhead Press', equipment: 'Barbell', muscle_group: 'Shoulders', sets: 4, reps: '4-6', rest: '120s' },
+                { name: 'Pull-ups', equipment: 'Bodyweight', muscle_group: 'Back', sets: 4, reps: '6-8', rest: '90s' }
+            ]
+        };
+
+        const selectedExercises = exercises[userGoal] || exercises['Build Muscle'];
+        const dayTitles = dayNames[parseInt(numDays)] || dayNames[3];
+
+        for (let i = 0; i < parseInt(numDays); i++) {
+            workoutDays.push({
+                day_title: dayTitles[i] || `Day ${i + 1}`,
+                total_exercises: 5,
+                exercises: selectedExercises.slice(0, 5)
+            });
+        }
+
+        return { days: workoutDays };
+    }
+
+    document.getElementById('ai-workout-form').addEventListener('submit', function(e) {
+        e.preventDefault(); 
+        
+        // Validate form before processing
+        if (!validateForm()) {
+            return;
+        }
+        
+        // 1. Collect data from form
+        const formData = new FormData(this);
+        const days = formData.get('days');
+        const goal = formData.get('goal');
+        const level = formData.get('level');
+        const equipment = formData.getAll('equipment').join(', ') || 'Any equipment';
+
+        console.log('User selections:', { days, goal, level, equipment });
+
+        // Prepare text to show in the Badge above the table (example: 3 Days • Weight Loss • Beginner)
+        const summaryText = `${days} Days • ${goal} • ${level}`;
+
+        // 2. Create the Prompt to request JSON in a strict format
+        const prompt = `You are an expert personal trainer. Create a detailed workout plan in JSON format.
+
+CRITICAL: The user wants to train ${days} days per week. You MUST create exactly ${days} training days in the workout plan. Do NOT create 3 days if they want 4, 5, or 6 days.
+
+User preferences:
+- Training days per week: ${days} (MUST be exactly this number)
+- Fitness goal: ${goal}
+- Experience level: ${level}
+- Available equipment: ${equipment}
+
+Generate a workout plan with EXACTLY ${days} training days. Each day should have 4-6 exercises appropriate for the user's level and goal.
+
+For ${days} days, create a split like:
+${days === '3' ? '- Day 1: Push (Chest, Shoulders, Triceps)\n- Day 2: Pull (Back, Biceps)\n- Day 3: Legs' : ''}
+${days === '4' ? '- Day 1: Upper Body Push\n- Day 2: Lower Body\n- Day 3: Upper Body Pull\n- Day 4: Full Body or Cardio' : ''}
+${days === '5' ? '- Day 1: Chest\n- Day 2: Back\n- Day 3: Legs\n- Day 4: Shoulders\n- Day 5: Arms' : ''}
+${days === '6' ? '- Day 1: Chest\n- Day 2: Back\n- Day 3: Legs\n- Day 4: Shoulders\n- Day 5: Arms\n- Day 6: Full Body' : ''}
+
+IMPORTANT: Respond ONLY with valid JSON. No explanations, no markdown, just pure JSON:
+
+{
+  "days": [
+    {
+      "day_title": "Day 1 - [Appropriate Focus]",
+      "total_exercises": 5,
+      "exercises": [
+        {
+          "name": "Exercise Name",
+          "equipment": "Barbell",
+          "muscle_group": "Chest",
+          "sets": 4,
+          "reps": "8-12",
+          "rest": "90s"
+        }
+      ]
+    }
+  ]
+}
+
+You MUST include exactly ${days} days in the "days" array. Count them: 1, 2, 3${days > 3 ? ', 4' : ''}${days > 4 ? ', 5' : ''}${days > 5 ? ', 6' : ''}.`;
+
+        console.log("prompt", prompt);
+
+        // 3. Call the function
+        generateWorkoutPlan(prompt, summaryText, days, goal, level);
+    });
+
+    // Form validation function
+    function validateForm() {
+        const form = document.getElementById('ai-workout-form');
+        const days = form.querySelector('input[name="days"]:checked');
+        const goal = form.querySelector('input[name="goal"]:checked');
+        const level = form.querySelector('input[name="level"]:checked');
+        
+        // Clear any previous error messages
+        const existingErrors = form.querySelectorAll('.error-message');
+        existingErrors.forEach(error => error.remove());
+        
+        let isValid = true;
+        
+        if (!days) {
+            showError('Please select how many days per week you want to train.', form.querySelector('.question-group:nth-child(1)'));
+            isValid = false;
+        }
+        
+        if (!goal) {
+            showError('Please select your main fitness goal.', form.querySelector('.question-group:nth-child(2)'));
+            isValid = false;
+        }
+        
+        if (!level) {
+            showError('Please select your experience level.', form.querySelector('.question-group:nth-child(3)'));
+            isValid = false;
+        }
+        
+        return isValid;
+    }
+    
+    function showError(message, targetElement) {
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.style.color = '#ef4444';
+        errorDiv.style.fontSize = '14px';
+        errorDiv.style.marginTop = '10px';
+        errorDiv.style.padding = '8px';
+        errorDiv.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        errorDiv.style.borderRadius = '4px';
+        errorDiv.textContent = message;
+        targetElement.appendChild(errorDiv);
+    }
+
+    // IMPORTANT: Replace with your own Gemini API key from https://makersuite.google.com/app/apikey
+    // Leave empty for demo/sample mode if you do not have a valid key.
+    const GEMINI_API_KEY = ''; 
+    
+    async function generateWorkoutPlan(promptText, summaryText, days, goal, level) {
+        const resultContainer = document.getElementById('result-container');
+        const apiResponseDiv = document.getElementById('api-response');
+
+        // Show result section and display loading message
+        resultContainer.style.display = 'block';
+        apiResponseDiv.innerHTML = '<div style="text-align: center; padding: 40px; color: var(--primary-yellow); font-size: 18px; font-weight: bold;">Generating your custom plan... Please wait ⏳</div>';
+
+        try {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{
+                            text: promptText
+                        }]
+                    }],
+                    generationConfig: {
+                        temperature: 0.7,
+                        topK: 40,
+                        topP: 0.95,
+                        maxOutputTokens: 2048
+                    }
+                })
+            });
+
+            // Check if response is ok
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(`API Error ${response.status}: ${errorData.error?.message || 'Unknown error'}`);
+            }
+
+            const data = await response.json();
+
+            // Check if we have a valid response
+            if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
+                throw new Error('Invalid API response format');
+            }
+
+            let aiResponseText = data.candidates[0].content.parts[0].text;
+
+            // Clean up the response
+            aiResponseText = aiResponseText.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
+
+            // Try to parse JSON
+            let workoutData;
+            try {
+                workoutData = JSON.parse(aiResponseText);
+            } catch (parseError) {
+                console.warn('Initial JSON parse failed, attempting to extract JSON object from response text.');
+                const jsonMatch = aiResponseText.match(/\{[\s\S]*\}/);
+                if (jsonMatch) {
+                    const cleanedText = jsonMatch[0]
+                        .replace(/[“”]/g, '"')
+                        .replace(/\bnull\b/g, 'null');
+                    try {
+                        workoutData = JSON.parse(cleanedText);
+                    } catch (fallbackParseError) {
+                        console.error('Fallback JSON Parse Error:', fallbackParseError);
+                        console.error('Raw response:', aiResponseText);
+                        throw new Error('The AI response was not in valid JSON format. Please try again.');
+                    }
+                } else {
+                    console.error('JSON Parse Error:', parseError);
+                    console.error('Raw response:', aiResponseText);
+                    throw new Error('The AI response was not in valid JSON format. Please try again.');
+                }
+            }
+
+            // Validate the workout data structure
+            if (!workoutData.days || !Array.isArray(workoutData.days)) {
+                throw new Error('Invalid workout plan format received');
+            }
+
+            renderWorkoutUI(workoutData, summaryText, apiResponseDiv);
+
+        } catch (error) {
+            console.error("Error calling Gemini API:", error);
+
+            // Fallback: Show a sample workout plan for demo purposes
+            const sampleData = generateSampleWorkout(days, goal, level);
+
+            apiResponseDiv.innerHTML = `<div style="color: #f59e0b; background: rgba(245, 158, 11, 0.1); padding: 15px; border-radius: 8px; margin-top: 20px; border: 1px solid #f59e0b;">
+                <strong>⚠️ Demo Mode:</strong> API connection failed, showing sample workout plan.<br>
+                <small>Error: ${error.message}</small><br>
+                <small>To use real AI generation, get a valid Gemini API key from <a href="https://makersuite.google.com/app/apikey" target="_blank" style="color: #f59e0b;">Google AI Studio</a></small>
+            </div>`;
+
+            // Still render the sample data
+            renderWorkoutUI(sampleData, summaryText, apiResponseDiv);
+        }
+    }
+
+    // Function to build HTML based on the returned JSON
+    function renderWorkoutUI(data, summaryText, container) {
+        // Clear any loading messages
+        container.innerHTML = '';
+
+        let html = `
+            <div class="workout-plan-container">
+                <div class="plan-header-top">
+                    <h2>✨ Your Personalized Workout Plan</h2>
+                    <div class="plan-summary-badge">${summaryText}</div>
+                </div>
+        `;
+
+        if (data.days && Array.isArray(data.days)) {
+            data.days.forEach(day => {
+                html += `
+                    <div class="day-card">
+                        <div class="day-header">
+                            <div class="day-title">${day.day_title}</div>
+                            <div class="ex-count">⏱️ ${day.total_exercises} exercises</div>
+                        </div>
+                        
+                        <div class="workout-grid">
+                            <div class="grid-header">Exercise</div>
+                            <div class="grid-header">Equipment</div>
+                            <div class="grid-header">Muscle Group</div>
+                            <div class="grid-header">Sets</div>
+                            <div class="grid-header">Reps</div>
+                            <div class="grid-header">Rest</div>
+                `;
+
+                if (day.exercises && Array.isArray(day.exercises)) {
+                    day.exercises.forEach(ex => {
+                        html += `
+                            <div class="grid-row">
+                                <div class="grid-cell cell-exercise">
+                                    <div class="ex-icon">🏋️</div>
+                                    ${ex.name}
+                                </div>
+                                <div class="grid-cell">${ex.equipment}</div>
+                                <div class="grid-cell"><span class="muscle-badge">${ex.muscle_group}</span></div>
+                                <div class="grid-cell cell-center">${ex.sets}</div>
+                                <div class="grid-cell cell-center">${ex.reps}</div>
+                                <div class="grid-cell cell-center">${ex.rest}</div>
+                            </div>
+                        `;
+                    });
+                }
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+        } else {
+            html += `<p style="color: red;">The data returned from the AI is not in the correct format.</p>`;
+        }
+
+        html += `</div>`;
+        container.innerHTML = html;
+    }
+</script>
+    <!-- ===== END JAVASCRIPT SECTION ===== -->
+    
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+<link rel="stylesheet" href="../css/Dashboard.css"/>
+<link rel="stylesheet" href="../css/Components.css"/>
+<link rel="stylesheet" href="../css/Global.css"/>
+
+</head>
+<body>
+
+<!-- ===== NAVIGATION SECTION ===== -->
+<!-- NAVBAR -->
+ <nav>
+      <a class="logo" href="index.html">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" transform="rotate(-45)">
+            <path
+              d="M7.4 7H4.6C4.27 7 4 7.27 4 7.6V16.4C4 16.73 4.27 17 4.6 17H7.4C7.73 17 8 16.73 8 16.4V7.6C8 7.27 7.73 7 7.4 7Z"
+              stroke="black"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M19.4 7H16.6C16.27 7 16 7.27 16 7.6V16.4C16 16.73 16.27 17 16.6 17H19.4C19.73 17 20 16.73 20 16.4V7.6C20 7.27 19.73 7 19.4 7Z"
+              stroke="black"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M8 12H16"
+              stroke="black"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+        FitTrack Pro
+      </a>
+
+      <div class="nav-links">
+        <a class="nav-link" href="Dashboard.html">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+          </svg>
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-link" href="Ai.html">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="3" />
+            <path
+              d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"
+            />
+          </svg>
+          <span>AI Workout</span>
+        </a>
+        <a class="nav-link active" href="exercise.html">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path
+              d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+            />
+          </svg>
+          <span>Exercises</span>
+        </a>
+      </div>
+
+    </nav>
+<!-- ===== END NAVIGATION SECTION ===== -->
+
+<!-- MAIN -->
+<main class="main">
+
+  <div class="page-title" style="animation:fadeUp .4s ease both">
+    <h1>Dashboard</h1>
+    <p>Track your fitness journey and in-body analytics</p>
+  </div>
+
+  <!-- STAT CARDS -->
+  <div class="stats-grid">
+    <div class="stat-card bmi">
+      <div class="stat-icon gold">⚖️</div>
+      <div class="stat-label">BMI</div>
+      <div class="stat-val" id="bmiVal"></div>
+      <div class="stat-sub">Normal range</div>
+    </div>
+    <div class="stat-card fat">
+      <div class="stat-icon teal">🔥</div>
+      <div class="stat-label">Body Fat</div>
+      <div class="stat-val" id="fatVal"><span class="stat-unit">%</span></div>
+      <div class="stat-sub">Fitness range</div>
+    </div>
+    <div class="stat-card muscle">
+      <div class="stat-icon green">💪</div>
+      <div class="stat-label">Muscle Mass</div>
+      <div class="stat-val" id="muscleVal"><span class="stat-unit">kg</span></div>
+      <div class="stat-sub">Above average</div>
+    </div>
+    <div class="stat-card bmr">
+      <div class="stat-icon orange">⚡</div>
+      <div class="stat-label">BMR</div>
+      <div class="stat-val" id="bmrVal"><span class="stat-unit">kcal</span></div>
+      <div class="stat-sub">Daily at rest</div>
+    </div>
+  </div>
+
+ 
+
+
+</main>
+<script> 
+
+document.addEventListener("DOMContentLoaded", function() {
+    // 1. نجيب اسم الصفحة الحالية ونحولها لحروف صغيرة
+    const currentPath = window.location.pathname.toLowerCase();
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+        // 2. نجيب المسار اللي في اللينك ونحوله لحروف صغيرة
+        const linkHref = link.getAttribute('href').toLowerCase();
+
+        // 3. لو العنوان اللي فوق "يحتوي" على اسم الملف، يبقى هو ده!
+        if (currentPath.includes(linkHref) && linkHref !== "#" && linkHref !== "") {
+            link.classList.add('active');
+            console.log("Matched: " + linkHref); // للتأكد في المتصفح
+        } else {
+            link.classList.remove('active');
+        }
+    });
+});
+
+window.onload = function() {
+  // هنسحب بيانات اليوزر اللي اتسجلت
+  const weight = parseFloat(localStorage.getItem('user_weight'));
+  const height = parseFloat(localStorage.getItem('user_height'));
+  const age = parseInt(localStorage.getItem('user_age'));
+  const gender = localStorage.getItem('user_gender');
+
+  // لو مفيش بيانات، وقف الكود
+  if (!weight || !height || !age || !gender) return;
+
+  // الحسابات
+  const heightInMeters = height / 100;
+  const bmi = weight / (heightInMeters * heightInMeters);
+
+  let bmr = (gender === 'male') 
+    ? (10 * weight) + (6.25 * height) - (5 * age) + 5 
+    : (10 * weight) + (6.25 * height) - (5 * age) - 161;
+
+  let bodyFat = (gender === 'male') 
+    ? (1.20 * bmi) + (0.23 * age) - 16.2 
+    : (1.20 * bmi) + (0.23 * age) - 5.4;
+  bodyFat = Math.max(bodyFat, 2);
+
+  const fatWeight = weight * (bodyFat / 100);
+  const muscleMass = weight - fatWeight;
+
+  // رمي النتايج جوه المربعات اللي في الـ HTML
+  document.getElementById('bmiVal').innerText = bmi.toFixed(1);
+  document.getElementById('fatVal').innerText = bodyFat.toFixed(1) + ' %';
+  document.getElementById('muscleVal').innerText = muscleMass.toFixed(1) + ' Kg';
+  document.getElementById('bmrVal').innerText = Math.round(bmr) + ' Kcal';
+};
+</script>
+
+</body>
+</html>

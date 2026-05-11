@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/Global.css" />
+    <link rel="stylesheet" href="../css/user-data.css" />
+    <link rel="stylesheet" href="../css/Components.css" />
+  </head>
+  <body>
+    <!-- ===== HEADER SECTION ===== -->
+    <div class="card" id="card">
+      <header class="header">
+        <h1>Complete Your Profile</h1>
+        <p>Help us personalize your fitness journey</p>
+      </header>
+    <!-- ===== END HEADER SECTION ===== -->
+
+      <div class="progress-bar">
+        <span class="active"></span><span></span><span></span><span></span>
+      </div>
+
+      <!-- ===== MAIN CONTENT SECTION ===== -->
+      <main class="step active">
+        <div class="field">
+          <div class="field-label">
+            <div class="field-num">1</div>
+            <h2>What's your age?</h2>
+          </div>
+          <div class="input-wrap">
+            <input type="number" id="age" value="27" min="10" max="100" />
+            <span class="unit">yrs</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">
+            <div class="field-num">2</div>
+            <h2>What's your height?</h2>
+          </div>
+          <div class="input-wrap">
+            <input
+              type="number"
+              id="height"
+              placeholder="175"
+              min="100"
+              max="250"
+            />
+            <span class="unit">cm</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">
+            <div class="field-num">3</div>
+            <h2>What's your weight?</h2>
+          </div>
+          <div class="input-wrap">
+            <input type="number" id="weight" placeholder="70" step="0.1" />
+            <span class="unit">kg</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">
+            <div class="field-num">4</div>
+            <h2>What's your gender?</h2>
+          </div>
+          <div class="gender-options">
+            <button
+              class="gender-btn selected"
+              data-val="male"
+              onclick="selectGender(this)"
+            >
+              Male
+            </button>
+            <button
+              class="gender-btn"
+              data-val="female"
+              onclick="selectGender(this)"
+            >
+              Female
+            </button>
+            <button
+              class="gender-btn"
+              data-val="other"
+              onclick="selectGender(this)"
+            >
+              Other
+            </button>
+          </div>
+        </div>
+      </main>
+      <!-- ===== END MAIN CONTENT SECTION ===== -->
+
+      <footer class="nav-row">
+        <div class="form-error" id="err-msg"></div>
+        <button class="btn btn--primary next-btn" onclick="validateStep()" id="sign-btn">
+          Next <span>→</span>
+        </button>
+      </footer>
+    </div>
+
+   
+
+    <!-- ===== JAVASCRIPT SECTION ===== -->
+    <script>
+      let gender = "male";
+
+      function selectGender(el) {
+        document
+          .querySelectorAll(".gender-btn")
+          .forEach((b) => b.classList.remove("selected"));
+        el.classList.add("selected");
+        gender = el.dataset.val;
+      }
+
+      function validateStep() {
+        const fields = ["age", "height", "weight"].map(
+          (id) => document.getElementById(id).value,
+        );
+        if (fields.some((val) => !val)) {
+          document.getElementById("err-msg").textContent =
+            "Please fill in all fields";
+        } else {
+          document.getElementById("err-msg").textContent = "";
+        }
+      }
+
+document.getElementById('sign-btn').addEventListener('click', function() {
+  // 1. هنسحب القيم اللي اليوزر كتبها في المربعات
+  const w = document.getElementById('weight').value;
+  const h = document.getElementById('height').value;
+  const a = document.getElementById('age').value;
+  const g = gender;
+
+  // التأكد إن اليوزر كتب البيانات فعلاً
+  if(w && h && a && g) {
+    // 2. هنحفظهم في الـ localStorage (عشان الداش بورد تلاقيهم)
+    localStorage.setItem('user_weight', w);
+    localStorage.setItem('user_height', h);
+    localStorage.setItem('user_age', a);
+    localStorage.setItem('user_gender', g);
+    
+    window.location.href = "Dashboard.html"; 
+  } else {
+    document.getElementById("err-msg").textContent = "Please complete your profile";
+  }
+});
+
+ </script>
+    <!-- ===== END JAVASCRIPT SECTION ===== -->
+  </body>
+</html>

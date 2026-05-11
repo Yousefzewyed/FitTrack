@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - FitTrack Pro</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/signup.css">
+  <link rel="stylesheet" href="../css/Components.css">
+  <link rel="stylesheet" href="../css/Global.css">
+
+</head>
+<body>
+  
+  <!-- ===== MAIN CONTENT SECTION ===== -->
+  <div class="page-wrap">
+    <div class="auth-card shadow-card">
+      <div id="form-view">
+        <!-- ===== FORM HEADER SECTION ===== -->
+        <div class="auth-header">
+          <div class="auth-icon">
+            <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(-45)">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                <path d="M7.4 7H4.6C4.26863 7 4 7.26863 4 7.6V16.4C4 16.7314 4.26863 17 4.6 17H7.4C7.73137 17 8 16.7314 8 16.4V7.6C8 7.26863 7.73137 7 7.4 7Z" stroke="#f5c800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M19.4 7H16.6C16.2686 7 16 7.26863 16 7.6V16.4C16 16.7314 16.2686 17 16.6 17H19.4C19.7314 17 20 16.7314 20 16.4V7.6C20 7.26863 19.7314 7 19.4 7Z" stroke="#f5c800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M1 14.4V9.6C1 9.26863 1.26863 9 1.6 9H3.4C3.73137 9 4 9.26863 4 9.6V14.4C4 14.7314 3.73137 15 3.4 15H1.6C1.26863 15 1 14.7314 1 14.4Z" stroke="#f5c800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M23 14.4V9.6C23 9.26863 22.7314 9 22.4 9H20.6C20.2686 9 20 9.26863 20 9.6V14.4C20 14.7314 20.2686 15 20.6 15H22.4C22.7314 15 23 14.7314 23 14.4Z" stroke="#f5c800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M8 12H16" stroke="#f5c800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              </g>
+            </svg>
+          </div>
+          <span class="section-eyebrow">Get Started</span>
+          <h1 class="auth-title">Create Account</h1>
+          <p class="auth-sub">Start Your Fitness Journey Today</p>
+        </div>
+        <!-- ===== END FORM HEADER SECTION ===== -->
+  
+        <div class="form-group">
+          <label class="form-label" for="inp-name">Full Name</label>
+          <div class="form-input-wrap">
+            <i class="fa-solid fa-address-card"></i>
+            <input class="form-input" type="text" id="inp-name" placeholder="yousef adel" />
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label class="form-label" for="mail">Email</label>
+          <div class="form-input-wrap">
+            <input class="form-input" type="email" id="mail" placeholder="your@gmail.com" />
+            <i class="ti ti-mail" aria-hidden="true"></i>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label class="form-label" for="inp-pass">Password</label>
+          <div class="form-input-wrap">
+            <input class="form-input" type="password" id="inp-pass" placeholder="********" />
+            <i class="ti ti-lock" aria-hidden="true"></i>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label class="form-label" for="inp-confirm">Confirm Password</label>
+          <div class="form-input-wrap">
+            <input class="form-input" type="password" id="inp-confirm" placeholder="********" />
+            <i class="ti ti-lock-check" aria-hidden="true"></i>
+          </div>
+        </div>
+  
+        <div class="form-check">
+          <input type="checkbox" id="chk-terms" />
+          <label class="form-check-label" for="chk-terms">
+            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+          </label>
+        </div>
+  
+        <div class="form-error" id="err-msg"></div>
+  
+        <a href="#" class="btn btn--primary create" onclick="handleRegister() "> 
+          <i class="ti ti-user-plus" aria-hidden="true"></i>
+          Create Account
+        </a>
+  
+        <div class="auth-divider"><span>OR</span></div>
+  
+        <a class="btn btn--secondary" onclick="">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Continue with Google
+        </a>
+  
+        <div class="auth-footer">
+          Already have an account? <a href="signup.html">Sign in</a>
+        </div>
+      </div>
+  
+      
+
+
+
+
+
+  <!-- ===== JAVASCRIPT SECTION ===== -->
+  <script>
+    function handleRegister() {
+      const name = document.getElementById('inp-name').value.trim();
+      const email = document.getElementById('mail').value.trim();
+      const pass = document.getElementById('inp-pass').value;
+      const confirm = document.getElementById('inp-confirm').value;
+      const terms = document.getElementById('chk-terms').checked;
+      const err = document.getElementById('err-msg');
+
+      if (!name) { err.innerHTML = '<i class="ti ti-alert-circle"></i> Please enter your full name.'; return; }
+      if (!email || !email.includes('@')) { err.innerHTML = '<i class="ti ti-alert-circle"></i> Please enter a valid email.'; return; }
+      if (pass.length < 6) { err.innerHTML = '<i class="ti ti-alert-circle"></i> Password must be at least 6 characters.'; return; }
+      if (pass !== confirm) { err.innerHTML = '<i class="ti ti-alert-circle"></i> Passwords do not match.'; return; }
+      if (!terms) { err.innerHTML = '<i class="ti ti-alert-circle"></i> Please agree to the terms and conditions.'; return; }
+
+      err.innerHTML = '';
+      window.location.href = "./user-data.html";
+    }
+  </script>
+  <!-- ===== END JAVASCRIPT SECTION ===== -->
+</body>
+</html>
+

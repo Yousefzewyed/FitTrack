@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FitTrack Pro – Exercise Library</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+   <link rel="stylesheet" href="../css/Components.css">
+   <link rel="stylesheet" href="../css/Global.css">
+   <link rel="stylesheet" href="../css/exercise.css">
+  </head>
+
+  <body>
+    
+    <!-- ===== NAVIGATION SECTION ===== -->
+    <nav>
+      <a class="logo" href="index.html">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" transform="rotate(-45)">
+            <path
+              d="M7.4 7H4.6C4.27 7 4 7.27 4 7.6V16.4C4 16.73 4.27 17 4.6 17H7.4C7.73 17 8 16.73 8 16.4V7.6C8 7.27 7.73 7 7.4 7Z"
+              stroke="black"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M19.4 7H16.6C16.27 7 16 7.27 16 7.6V16.4C16 16.73 16.27 17 16.6 17H19.4C19.73 17 20 16.73 20 16.4V7.6C20 7.27 19.73 7 19.4 7Z"
+              stroke="black"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M8 12H16"
+              stroke="black"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+        FitTrack Pro
+      </a>
+
+      <div class="nav-links">
+        <a class="nav-link" href="Dashboard.html">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+          </svg>
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-link" href="Ai.html">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="3" />
+            <path
+              d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"
+            />
+          </svg>
+          <span>AI Workout</span>
+        </a>
+        <a class="nav-link active" href="exercise.html">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path
+              d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+            />
+          </svg>
+          <span>Exercises</span>
+        </a>
+      </div>
+
+    </nav>
+    <!-- ===== END NAVIGATION SECTION ===== -->
+
+    <main class="page">
+      <div class="page-header">
+        <h1>Exercise Library</h1>
+        <p>
+          Browse our comprehensive collection of exercises with video guides
+        </p>
+      </div>
+
+      <div class="search-bar">
+        <div class="search-input">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="M21 21l-4.35-4.35" />
+          </svg>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search exercises…"
+            autocomplete="off"
+          />
+        </div>
+        <div class="divider"></div>
+        <div class="filter-pills" id="filterPills">
+          <button class="pill active" data-filter="all">All</button>
+          <button class="pill" data-filter="chest">Chest</button>
+          <button class="pill" data-filter="back">Back</button>
+          <button class="pill" data-filter="legs">Legs</button>
+          <button class="pill" data-filter="arms">Arms</button>
+          <button class="pill" data-filter="shoulders">Shoulders</button>
+          <button class="pill" data-filter="core">Core</button>
+          <button class="pill" data-filter="cardio">Cardio</button>
+        </div>
+      </div>
+
+      <div class="grid" id="grid">
+        <div class="empty" id="emptyState">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="M21 21l-4.35-4.35" />
+          </svg>
+          <h3>No exercises found</h3>
+          <p>Try a different search or filter</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- MODAL -->
+    <div class="modal-backdrop" id="modalBackdrop">
+      <div class="modal">
+        <div class="modal-media">
+          <img id="modalImg" src="" alt="" />
+          <video id="modalVideo" controls></video>
+          <div class="modal-play-overlay" id="playOverlay">
+            <button class="modal-play-btn" id="playBtn">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="modal-header">
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <button class="modal-close" id="modalClose">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+          <div class="modal-tags" id="modalTags"></div>
+          <p class="modal-desc" id="modalDesc"></p>
+          <div class="modal-stats" id="modalStats"></div>
+          <button class="modal-btn" id="modalBtn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+            Watch Full Tutorial
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* ===== DATA ===== */
+      const exercises = [
+        {
+          id: 1,
+          title: "Bench Press",
+          equipment: "Barbell",
+          category: "chest",
+          difficulty: "intermediate",
+          duration: 15,
+          kcal: 120,
+          sets: "4 sets",
+          reps: "8–12 reps",
+          description:
+            "The bench press is a compound movement that primarily targets the pectorals, triceps, and anterior deltoids. Lie flat on the bench, grip the bar slightly wider than shoulder-width, and press to full extension.",
+          img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80",
+          video: "../videos/male-barbell-bench-press-side_KciuhbB.mp4",
+        },
+       
+        
+        {
+          id: 2,
+          title: "Deadlift",
+          equipment: "Barbell",
+          category: "back",
+          difficulty: "advanced",
+          duration: 25,
+          kcal: 200,
+          sets: "4 sets",
+          reps: "4–6 reps",
+          description:
+            "The deadlift is a full-body pulling movement that builds serious posterior chain strength. Hinge at the hips, maintain a neutral spine, and drive through your legs as you stand the bar up.",
+          img: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=600&q=80",
+          video: "../videos/male-barbell-stiff-leg-deadlift-side.mp4",
+        },
+        
+        
+        {
+          id: 3,
+          title: "Bicep Curls",
+          equipment: "Dumbbell",
+          category: "arms",
+          difficulty: "beginner",
+          duration: 10,
+          kcal: 60,
+          sets: "3 sets",
+          reps: "10–15 reps",
+          description:
+            "Bicep curls isolate the biceps brachii, building size and peak. Control the lowering phase to maximize time under tension and avoid swinging your torso.",
+          img: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80",
+          video: "../videos/male-Barbell-barbell-curl-front.mp4",
+        },
+      ];
+
+      let activeFilter = "all";
+      let searchQuery = "";
+      let currentEx = null;
+
+      /* ===== RENDER CARDS ===== */
+      function renderCards() {
+        const grid = document.getElementById("grid");
+        const emptyState = document.getElementById("emptyState");
+
+        grid.querySelectorAll(".card").forEach((c) => c.remove());
+
+        const filtered = exercises.filter((ex) => {
+          const matchCat =
+            activeFilter === "all" || ex.category === activeFilter;
+          const matchQ = [ex.title, ex.equipment, ex.category]
+            .join(" ")
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase());
+          return matchCat && matchQ;
+        });
+
+        emptyState.style.display = filtered.length === 0 ? "block" : "none";
+
+        filtered.forEach((ex, i) => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.style.animationDelay = `${i * 0.07}s`;
+          card.innerHTML = `
+                <div class="card-thumb">
+                    <img src="${ex.img}" alt="${ex.title}" loading="lazy" />
+                    <div class="thumb-overlay"></div>
+                    <div class="play-overlay">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span class="badge ${ex.difficulty}">${ex.difficulty.charAt(0).toUpperCase() + ex.difficulty.slice(1)}</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">${ex.title}</div>
+                    <div class="card-equipment">Equipment: ${ex.equipment}</div>
+                    <div class="card-meta">
+                        <span class="meta">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            ${ex.duration} min
+                        </span>
+                        <span class="meta">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                            ${ex.kcal} kcal
+                        </span>
+                    </div>
+                    <button class="watch-btn">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        Watch Tutorial
+                    </button>
+                </div>
+            `;
+          card
+            .querySelector(".watch-btn")
+            .addEventListener("click", () => openModal(ex.id));
+          card
+            .querySelector(".card-thumb")
+            .addEventListener("click", () => openModal(ex.id));
+          grid.insertBefore(card, emptyState);
+        });
+      }
+
+      /* ===== VIDEO ===== */
+      function startVideo() {
+        if (!currentEx || !currentEx.video) return;
+        const video = document.getElementById("modalVideo");
+        const img = document.getElementById("modalImg");
+        const overlay = document.getElementById("playOverlay");
+
+        video.src = currentEx.video;
+        video.style.display = "block";
+        img.style.display = "none";
+        overlay.style.display = "none";
+        video.play();
+      }
+
+      /* ===== OPEN MODAL ===== */
+      function openModal(id) {
+        currentEx = exercises.find((e) => e.id === id);
+        if (!currentEx) return;
+
+        const ex = currentEx;
+
+        // Reset media to image
+        const video = document.getElementById("modalVideo");
+        video.pause();
+        video.removeAttribute("src");
+        video.style.display = "none";
+
+        const img = document.getElementById("modalImg");
+        img.src = ex.img;
+        img.alt = ex.title;
+        img.style.display = "block";
+
+        document.getElementById("playOverlay").style.display = "flex";
+
+        // Fill content
+        document.getElementById("modalTitle").textContent = ex.title;
+        document.getElementById("modalDesc").textContent = ex.description;
+
+        document.getElementById("modalTags").innerHTML = `
+            <span class="tag yellow">${ex.difficulty.charAt(0).toUpperCase() + ex.difficulty.slice(1)}</span>
+            <span class="tag">${ex.category.charAt(0).toUpperCase() + ex.category.slice(1)}</span>
+            <span class="tag">${ex.equipment}</span>
+        `;
+
+        document.getElementById("modalStats").innerHTML = `
+            <div class="stat"><span class="stat-val">${ex.duration}</span><span class="stat-lbl">Minutes</span></div>
+            <div class="stat"><span class="stat-val">${ex.kcal}</span><span class="stat-lbl">kcal</span></div>
+            <div class="stat"><span class="stat-val">${ex.sets}</span><span class="stat-lbl">Sets</span></div>
+            <div class="stat"><span class="stat-val">${ex.reps}</span><span class="stat-lbl">Reps</span></div>
+        `;
+
+        // Watch button
+        const btn = document.getElementById("modalBtn");
+        if (ex.video) {
+          btn.className = "modal-btn";
+          btn.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Watch Full Tutorial`;
+          btn.onclick = startVideo;
+        } else {
+          btn.className = "modal-btn no-video";
+          btn.innerHTML = `No Video Available`;
+          btn.onclick = null;
+        }
+
+        document.getElementById("modalBackdrop").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      /* ===== CLOSE MODAL ===== */
+      function closeModal() {
+        const video = document.getElementById("modalVideo");
+        video.pause();
+        video.removeAttribute("src");
+        document.getElementById("modalBackdrop").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      /* ===== EVENTS ===== */
+      document.getElementById("playBtn").addEventListener("click", startVideo);
+      document
+        .getElementById("modalClose")
+        .addEventListener("click", closeModal);
+      document
+        .getElementById("modalBackdrop")
+        .addEventListener("click", (e) => {
+          if (e.target.id === "modalBackdrop") closeModal();
+        });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+      });
+
+      document.getElementById("filterPills").addEventListener("click", (e) => {
+        const pill = e.target.closest(".pill");
+        if (!pill) return;
+        document
+          .querySelectorAll(".pill")
+          .forEach((p) => p.classList.remove("active"));
+        pill.classList.add("active");
+        activeFilter = pill.dataset.filter;
+        renderCards();
+      });
+
+      document.getElementById("searchInput").addEventListener("input", (e) => {
+        searchQuery = e.target.value;
+        renderCards();
+      });
+
+      /* ===== INIT ===== */
+      renderCards();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,145 @@
+:root {
+  --font-size: 16px; /* الحجم الأساسي للنصوص في الموقع */
+  --background: #1a1a1a;
+  --foreground: #f5f5f5;
+          --primary-fg: #1a1a1a;
+
+  /* لون النص الأساسي \ */
+
+  --card: #262626; /* لون خلفية الكارت (أفتح من الخلفية الأساسية شوية) */
+  --card-foreground: #f5f5f5; /* لون النص اللي جوه الكروت */
+
+  /* --- اللون الأساسي (The Fitness Yellow) --- */
+  --primary: #f5c800;
+  --purple: #7c3aed;
+  --primary-foreground: #1a1a1a; /* لون النص اللي هيتكتب "جوه" الزرار الأصفر (أسود عشان يظهر) */
+
+  /* --- الألوان الثانوية والباهتة --- */
+  --secondary: #3a3a3a; /* للأزرار الأقل أهمية أو العناصر الجانبية */
+  --secondary-foreground: #f5f5f5;
+  --muted: #9c9c9c; /* العناصر اللي مش عايزينها تجذب الانتباه */
+  --muted-foreground: #a3a3a3; /* لون النصوص التوضيحية الباهتة (زي الشرح تحت العناوين) */
+
+  /* --- لون التمييز (Accent) --- */
+  --accent: #f5c800; /* بيستخدم للتركيز على حاجة معينة (Hover مثلاً) */
+  --accent-foreground: #1a1a1a;
+
+  /* --- التنبيهات والأخطاء --- */
+  --destructive: #ef4444; /* لون أحمر لعمليات المسح أو الأخطاء في الإنبووت */
+  --destructive-foreground: #ffffff;
+
+  /* --- الحواف والمدخلات (Inputs) --- */
+  --border: #3a3a3a; /* لون الخطوط الرفيعة اللي بتحدد الكروت والإنبووتس */
+  --input: #3a3a3a; /* لون حدود مربعات الإدخال */
+  --input-background: #2a2a2a; /* لون خلفية مربع الإدخال (زي اللي في صفحة التسجيل) */
+
+  /* --- الخطوط والتركيز --- */
+  --font-weight-medium: 500; /* ثقل الخط للعناوين */
+  --font-weight-normal: 400; /* ثقل الخط للكلام العادي */
+  --ring: #f5c800; /* لون "الهالة" اللي بتظهر حول الإنبووت لما تضغط عليه (Focus) */
+
+  --teal: #1abc9c;
+  --blue: #3498db;
+  --orange: #e67e22;
+
+        --green: #2ecc71;
+        --red: #ef4444;
+        --nav-h: 66px;
+
+        --bg-color: #1a1a1a;
+            --card-bg: #222222;
+            --border-color: #333333;
+            --primary-yellow: #facc15;
+            --text-main: #ffffff;
+            --text-muted: #9ca3af;
+
+  /* --- الحواف الدائرية (Radius) --- */
+  --radius: 0.75rem;
+
+  --gradient-hero:
+    radial-gradient(
+      ellipse 80% 60% at 70% 40%,
+      rgba(124, 58, 237, 0.18) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 50% 40% at 10% 80%,
+      rgba(245, 200, 0, 0.08) 0%,
+      transparent 60%
+    ),
+    #141414;
+
+  --gradient-cta: linear-gradient(
+    135deg,
+    #2a2040 0%,
+    #1c1c2e 50%,
+    #232030 100%
+  );
+
+  --gradient-accent-btn: linear-gradient(135deg, #f5c800 0%, #e6b800 100%);
+
+  --gradient-card-border: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.02)
+  );
+
+  /* space */
+  --xs: 4px;
+  --sm: 8px;
+  --md: 16px;
+  --lg: 24px;
+  --xl: 40px;
+  --2xl: 64px;
+  --3xl: 96px; /* درجة انحناء زوايا الكروت (بتخلي شكل الموقع مودرن) */
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 9999px;
+
+  --shadow-card: 0 2px 24px rgba(0, 0, 0, 0.45);
+  --shadow-accent: 0 4px 20px rgba(245, 200, 0, 0.3);
+  --shadow-glow: 0 0 40px rgba(124, 58, 237, 0.25);
+
+  /* Typography */
+  --font-display: "Bebas Neue", sans-serif;
+  --font-body: "Manrope", sans-serif;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-slow: 0.4s ease;
+}
+/* ===== END CSS VARIABLES ===== */
+
+/* ===== BASE STYLES ===== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* بيضمن إن العرض والارتفاع محسوبين صح */
+  border-color: var(--border);
+  border-style: solid;
+  border-width: 0; /* بنخلي العرض صفر وبنزوده بس للي محتاج border */
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: "Manrope", sans-serif; /* الخط اللي أنت استدعيته في HTML */
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+/* ===== END BASE STYLES ===== */
