@@ -1,5 +1,5 @@
 @import url('./Global.css');
-@import url('/css/Components.css');
+@import url('./Components.css');
 
 *, *::before, *::after {
      box-sizing: border-box;
