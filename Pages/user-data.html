@@ -132,15 +132,12 @@
       }
 
 document.getElementById('sign-btn').addEventListener('click', function() {
-  // 1. هنسحب القيم اللي اليوزر كتبها في المربعات
   const w = document.getElementById('weight').value;
   const h = document.getElementById('height').value;
   const a = document.getElementById('age').value;
   const g = gender;
 
-  // التأكد إن اليوزر كتب البيانات فعلاً
   if(w && h && a && g) {
-    // 2. هنحفظهم في الـ localStorage (عشان الداش بورد تلاقيهم)
     localStorage.setItem('user_weight', w);
     localStorage.setItem('user_height', h);
     localStorage.setItem('user_age', a);

@@ -245,104 +245,58 @@
     }
 
     document.getElementById('ai-workout-form').addEventListener('submit', function(e) {
-        e.preventDefault(); 
-        
-        // Validate form before processing
+        e.preventDefault();
+
         if (!validateForm()) {
             return;
         }
-        
-        // 1. Collect data from form
+
         const formData = new FormData(this);
         const days = formData.get('days');
         const goal = formData.get('goal');
         const level = formData.get('level');
-        const equipment = formData.getAll('equipment').join(', ') || 'Any equipment';
 
-        console.log('User selections:', { days, goal, level, equipment });
-
-        // Prepare text to show in the Badge above the table (example: 3 Days • Weight Loss • Beginner)
         const summaryText = `${days} Days • ${goal} • ${level}`;
 
-        // 2. Create the Prompt to request JSON in a strict format
-        const prompt = `You are an expert personal trainer. Create a detailed workout plan in JSON format.
+        const resultContainer = document.getElementById('result-container');
+        const apiResponseDiv = document.getElementById('api-response');
 
-CRITICAL: The user wants to train ${days} days per week. You MUST create exactly ${days} training days in the workout plan. Do NOT create 3 days if they want 4, 5, or 6 days.
+        resultContainer.style.display = 'block';
+        apiResponseDiv.innerHTML = '';
 
-User preferences:
-- Training days per week: ${days} (MUST be exactly this number)
-- Fitness goal: ${goal}
-- Experience level: ${level}
-- Available equipment: ${equipment}
-
-Generate a workout plan with EXACTLY ${days} training days. Each day should have 4-6 exercises appropriate for the user's level and goal.
-
-For ${days} days, create a split like:
-${days === '3' ? '- Day 1: Push (Chest, Shoulders, Triceps)\n- Day 2: Pull (Back, Biceps)\n- Day 3: Legs' : ''}
-${days === '4' ? '- Day 1: Upper Body Push\n- Day 2: Lower Body\n- Day 3: Upper Body Pull\n- Day 4: Full Body or Cardio' : ''}
-${days === '5' ? '- Day 1: Chest\n- Day 2: Back\n- Day 3: Legs\n- Day 4: Shoulders\n- Day 5: Arms' : ''}
-${days === '6' ? '- Day 1: Chest\n- Day 2: Back\n- Day 3: Legs\n- Day 4: Shoulders\n- Day 5: Arms\n- Day 6: Full Body' : ''}
-
-IMPORTANT: Respond ONLY with valid JSON. No explanations, no markdown, just pure JSON:
-
-{
-  "days": [
-    {
-      "day_title": "Day 1 - [Appropriate Focus]",
-      "total_exercises": 5,
-      "exercises": [
-        {
-          "name": "Exercise Name",
-          "equipment": "Barbell",
-          "muscle_group": "Chest",
-          "sets": 4,
-          "reps": "8-12",
-          "rest": "90s"
-        }
-      ]
-    }
-  ]
-}
-
-You MUST include exactly ${days} days in the "days" array. Count them: 1, 2, 3${days > 3 ? ', 4' : ''}${days > 4 ? ', 5' : ''}${days > 5 ? ', 6' : ''}.`;
-
-        console.log("prompt", prompt);
-
-        // 3. Call the function
-        generateWorkoutPlan(prompt, summaryText, days, goal, level);
+        const workoutData = generateSampleWorkout(days, goal, level);
+        renderWorkoutUI(workoutData, summaryText, apiResponseDiv);
     });
 
-    // Form validation function
     function validateForm() {
         const form = document.getElementById('ai-workout-form');
         const days = form.querySelector('input[name="days"]:checked');
         const goal = form.querySelector('input[name="goal"]:checked');
         const level = form.querySelector('input[name="level"]:checked');
-        
-        // Clear any previous error messages
+
         const existingErrors = form.querySelectorAll('.error-message');
         existingErrors.forEach(error => error.remove());
-        
+
         let isValid = true;
-        
+
         if (!days) {
             showError('Please select how many days per week you want to train.', form.querySelector('.question-group:nth-child(1)'));
             isValid = false;
         }
-        
+
         if (!goal) {
             showError('Please select your main fitness goal.', form.querySelector('.question-group:nth-child(2)'));
             isValid = false;
         }
-        
+
         if (!level) {
             showError('Please select your experience level.', form.querySelector('.question-group:nth-child(3)'));
             isValid = false;
         }
-        
+
         return isValid;
     }
-    
+
     function showError(message, targetElement) {
         const errorDiv = document.createElement('div');
         errorDiv.className = 'error-message';
@@ -356,111 +310,7 @@ You MUST include exactly ${days} days in the "days" array. Count them: 1, 2, 3${
         targetElement.appendChild(errorDiv);
     }
 
-    // IMPORTANT: Replace with your own Gemini API key from https://makersuite.google.com/app/apikey
-    // Leave empty for demo/sample mode if you do not have a valid key.
-    const GEMINI_API_KEY = ''; 
-    
-    async function generateWorkoutPlan(promptText, summaryText, days, goal, level) {
-        const resultContainer = document.getElementById('result-container');
-        const apiResponseDiv = document.getElementById('api-response');
-
-        // Show result section and display loading message
-        resultContainer.style.display = 'block';
-        apiResponseDiv.innerHTML = '<div style="text-align: center; padding: 40px; color: var(--primary-yellow); font-size: 18px; font-weight: bold;">Generating your custom plan... Please wait ⏳</div>';
-
-        try {
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    contents: [{
-                        parts: [{
-                            text: promptText
-                        }]
-                    }],
-                    generationConfig: {
-                        temperature: 0.7,
-                        topK: 40,
-                        topP: 0.95,
-                        maxOutputTokens: 2048
-                    }
-                })
-            });
-
-            // Check if response is ok
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(`API Error ${response.status}: ${errorData.error?.message || 'Unknown error'}`);
-            }
-
-            const data = await response.json();
-
-            // Check if we have a valid response
-            if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
-                throw new Error('Invalid API response format');
-            }
-
-            let aiResponseText = data.candidates[0].content.parts[0].text;
-
-            // Clean up the response
-            aiResponseText = aiResponseText.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
-
-            // Try to parse JSON
-            let workoutData;
-            try {
-                workoutData = JSON.parse(aiResponseText);
-            } catch (parseError) {
-                console.warn('Initial JSON parse failed, attempting to extract JSON object from response text.');
-                const jsonMatch = aiResponseText.match(/\{[\s\S]*\}/);
-                if (jsonMatch) {
-                    const cleanedText = jsonMatch[0]
-                        .replace(/[“”]/g, '"')
-                        .replace(/\bnull\b/g, 'null');
-                    try {
-                        workoutData = JSON.parse(cleanedText);
-                    } catch (fallbackParseError) {
-                        console.error('Fallback JSON Parse Error:', fallbackParseError);
-                        console.error('Raw response:', aiResponseText);
-                        throw new Error('The AI response was not in valid JSON format. Please try again.');
-                    }
-                } else {
-                    console.error('JSON Parse Error:', parseError);
-                    console.error('Raw response:', aiResponseText);
-                    throw new Error('The AI response was not in valid JSON format. Please try again.');
-                }
-            }
-
-            // Validate the workout data structure
-            if (!workoutData.days || !Array.isArray(workoutData.days)) {
-                throw new Error('Invalid workout plan format received');
-            }
-
-            renderWorkoutUI(workoutData, summaryText, apiResponseDiv);
-
-        } catch (error) {
-            console.error("Error calling Gemini API:", error);
-
-            // Fallback: Show a sample workout plan for demo purposes
-            const sampleData = generateSampleWorkout(days, goal, level);
-
-            apiResponseDiv.innerHTML = `<div style="color: #f59e0b; background: rgba(245, 158, 11, 0.1); padding: 15px; border-radius: 8px; margin-top: 20px; border: 1px solid #f59e0b;">
-                <strong>⚠️ Demo Mode:</strong> API connection failed, showing sample workout plan.<br>
-                <small>Error: ${error.message}</small><br>
-                <small>To use real AI generation, get a valid Gemini API key from <a href="https://makersuite.google.com/app/apikey" target="_blank" style="color: #f59e0b;">Google AI Studio</a></small>
-            </div>`;
-
-            // Still render the sample data
-            renderWorkoutUI(sampleData, summaryText, apiResponseDiv);
-        }
-    }
-
-    // Function to build HTML based on the returned JSON
     function renderWorkoutUI(data, summaryText, container) {
-        // Clear any loading messages
         container.innerHTML = '';
 
         let html = `
@@ -479,7 +329,7 @@ You MUST include exactly ${days} days in the "days" array. Count them: 1, 2, 3${
                             <div class="day-title">${day.day_title}</div>
                             <div class="ex-count">⏱️ ${day.total_exercises} exercises</div>
                         </div>
-                        
+
                         <div class="workout-grid">
                             <div class="grid-header">Exercise</div>
                             <div class="grid-header">Equipment</div>
@@ -513,13 +363,14 @@ You MUST include exactly ${days} days in the "days" array. Count them: 1, 2, 3${
                 `;
             });
         } else {
-            html += `<p style="color: red;">The data returned from the AI is not in the correct format.</p>`;
+            html += `<p style="color: red;">The data returned is not in the correct format.</p>`;
         }
 
         html += `</div>`;
         container.innerHTML = html;
     }
 </script>
+
     <!-- ===== END JAVASCRIPT SECTION ===== -->
     
 </body>

@@ -201,25 +201,10 @@
       </svg>
       FitTrack Pro
     </div>
-    <div class="footer__copy">© 2026 FitTrack Pro. Transform Your Fitness Journey.</div>
+    <div class="footer__copy">&copy; 2026 FitTrack Pro. Transform Your Fitness Journey.</div>
   </footer>
   <!-- ===== END FOOTER SECTION ===== -->
 
-
-
-  <!-- ===== JAVASCRIPT SECTION ===== -->
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.15 });
- 
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-  </script>
-  <!-- ===== END JAVASCRIPT SECTION ===== -->
+  
 </body>
 </html>

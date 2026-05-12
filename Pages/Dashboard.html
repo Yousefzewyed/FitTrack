@@ -136,34 +136,28 @@
 <script> 
 
 document.addEventListener("DOMContentLoaded", function() {
-    // 1. نجيب اسم الصفحة الحالية ونحولها لحروف صغيرة
     const currentPath = window.location.pathname.toLowerCase();
 
     document.querySelectorAll('.nav-link').forEach(link => {
-        // 2. نجيب المسار اللي في اللينك ونحوله لحروف صغيرة
         const linkHref = link.getAttribute('href').toLowerCase();
 
-        // 3. لو العنوان اللي فوق "يحتوي" على اسم الملف، يبقى هو ده!
         if (currentPath.includes(linkHref) && linkHref !== "#" && linkHref !== "") {
             link.classList.add('active');
-            console.log("Matched: " + linkHref); // للتأكد في المتصفح
-        } else {
+            console.log("Matched: " + linkHref);
+                  } else {
             link.classList.remove('active');
         }
     });
 });
 
 window.onload = function() {
-  // هنسحب بيانات اليوزر اللي اتسجلت
   const weight = parseFloat(localStorage.getItem('user_weight'));
   const height = parseFloat(localStorage.getItem('user_height'));
   const age = parseInt(localStorage.getItem('user_age'));
   const gender = localStorage.getItem('user_gender');
 
-  // لو مفيش بيانات، وقف الكود
   if (!weight || !height || !age || !gender) return;
 
-  // الحسابات
   const heightInMeters = height / 100;
   const bmi = weight / (heightInMeters * heightInMeters);
 

@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FitTrack Pro – Exercise Library</title>
+
+    <title>FitTrack Pro - Exercise Library</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700;800&display=swap"
       rel="stylesheet"
@@ -16,6 +17,7 @@
   <body>
     
     <!-- ===== NAVIGATION SECTION ===== -->
+
     <nav>
       <a class="logo" href="../index.html">
         <div class="logo-icon">
@@ -91,7 +93,11 @@
       </div>
 
     </nav>
+
     <!-- ===== END NAVIGATION SECTION ===== -->
+
+
+    <!-- ===== MAIN SECTION ==== -->
 
     <main class="page">
       <div class="page-header">
@@ -151,9 +157,14 @@
       </div>
     </main>
 
-    <!-- MODAL -->
+    <!-- ===== END MAIN SECTION ==== -->
+
+
+    <!-- ==== MODAL ==== -->
+
     <div class="modal-backdrop" id="modalBackdrop">
       <div class="modal">
+
         <div class="modal-media">
           <img id="modalImg" src="" alt="" />
           <video id="modalVideo" controls></video>
@@ -196,8 +207,14 @@
       </div>
     </div>
 
+    <!-- ==== END MODAL ==== -->
+
+
+
+
     <script>
       /* ===== DATA ===== */
+
       const exercises = [
         {
           id: 1,
@@ -254,7 +271,9 @@
       let searchQuery = "";
       let currentEx = null;
 
+      
       /* ===== RENDER CARDS ===== */
+
       function renderCards() {
         const grid = document.getElementById("grid");
         const emptyState = document.getElementById("emptyState");

@@ -1,7 +1,6 @@
 /* ===== IMPORTS ===== */
-@import url('./Components.css');
-@import url('./Global.css');
-/* ===== END IMPORTS ===== */
+@import url('./css/Components.css');
+@import url('./css/Global.css');
 
 /* ===== CSS VARIABLES ===== */
       :root {
@@ -16,9 +15,9 @@
         --orange: #e67e22;
         --red: #ef4444;
       }
-/* ===== END CSS VARIABLES ===== */
 
-/* ===== RESET AND BASE STYLES ===== */
+/* ===== Reset ===== */
+
       * {
         margin: 0;
         padding: 0;
